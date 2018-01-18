@@ -12,6 +12,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
 
+import io.swagger.annotations.ApiModelProperty;
+
 @Entity(name = "employee")
 public class Employee {
 	@Id
@@ -19,19 +21,29 @@ public class Employee {
 	private int id;
 	@Column(nullable = false) 
 	@Size(max = 20)
+	@ApiModelProperty(position = 1, required = true, value = "員工姓名")
 	private String name;
 	@Column(nullable = false) 
 	@Size(max = 10)
+	@ApiModelProperty(position = 2, required = true, value = "身份證字號")
 	private String rocId;
 	@Column(nullable = false) 
+	@ApiModelProperty(position = 3, required = true, value = "員工編號")
 	private String employeeNo;
     @OneToMany
     @JoinColumn(name="habbit_id",referencedColumnName = "id")
+    @ApiModelProperty(position = 4, required = false, value = "興趣清單")
 	private List<Habbit> habbits;
 	@OneToOne
 	@JoinColumn(name = "department_id" ,referencedColumnName = "id")
+    @ApiModelProperty(position = 5, required = false, value = "部門")
 	private Department department;
- 
+	@Column(nullable = false) 
+    @ApiModelProperty(position = 6, required = false, value = "婚姻狀態")
+	private boolean marriage;
+	@Column(nullable = false) 
+    @ApiModelProperty(position = 7, required = false, value = "小孩數量")
+	private Integer child;
 	public String getName() {
 		return name;
 	}
@@ -79,6 +91,22 @@ public class Employee {
 
 	public void setDepartment(Department department) {
 		this.department = department;
+	}
+
+	public boolean isMarriage() {
+		return marriage;
+	}
+
+	public void setMarriage(boolean marriage) {
+		this.marriage = marriage;
+	}
+
+	public Integer getChild() {
+		return child;
+	}
+
+	public void setChild(Integer child) {
+		this.child = child;
 	}
 
  
