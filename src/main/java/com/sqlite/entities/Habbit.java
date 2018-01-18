@@ -9,6 +9,16 @@ import javax.persistence.Id;
 import io.swagger.annotations.ApiModelProperty;
 @Entity(name = "habbit")
 public class Habbit {
+	public Habbit(String name) {
+		this.name = name;
+	}
+	public Habbit(int id ,String name) {
+		this.name = name;
+		this.id = id;
+	}
+	public Habbit() {
+		
+	}
 	@Column(nullable = false)
 	@ApiModelProperty(position = 1, required = true, value = "興趣名稱")
  	private String name ;

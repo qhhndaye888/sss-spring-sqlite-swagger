@@ -31,4 +31,10 @@ public class Department {
 	public void setId(int id) {
 		this.id = id;
 	}
+	public Department(String departmentName) {
+		this.name = departmentName;
+	}
+	public Department() {
+		
+	}
 }

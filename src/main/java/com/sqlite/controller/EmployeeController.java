@@ -1,5 +1,6 @@
 package com.sqlite.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sqlite.dao.EmployeeDao;
 import com.sqlite.entities.Employee;
+import com.sqlite.entities.Habbit;
 import com.sqlite.models.EmployeeVo;
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -30,9 +32,14 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/employees", method = RequestMethod.POST)
-	public ResponseEntity<Employee> addEmployees(@RequestBody EmployeeVo employee) throws Exception{
+	public ResponseEntity<Employee> addEmployees(@RequestBody EmployeeVo employeeVo) throws Exception{
 		Employee employeeDto = new Employee();
-		BeanUtils.copyProperties(employee, employeeDto);
+		BeanUtils.copyProperties(employeeVo, employeeDto);
+		List<Habbit> list = new ArrayList<Habbit>();
+		employeeVo.getHabbits().forEach((v)->{
+			list.add(new Habbit(v.getId(),v.getName()));
+		});
+		employeeDto.setHabbits(list);
 		employeeDto= this.employeeDao.save(employeeDto);
 		return new ResponseEntity<Employee>(employeeDto, new HttpHeaders(), HttpStatus.OK);
 	}

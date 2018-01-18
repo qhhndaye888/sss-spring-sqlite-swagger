@@ -38,10 +38,10 @@ public class Employee {
 	@JoinColumn(name = "department_id" ,referencedColumnName = "id")
     @ApiModelProperty(position = 5, required = false, value = "部門")
 	private Department department;
-	@Column(nullable = false) 
+	@Column(nullable = true) 
     @ApiModelProperty(position = 6, required = false, value = "婚姻狀態")
 	private boolean marriage;
-	@Column(nullable = false) 
+	@Column(nullable = true) 
     @ApiModelProperty(position = 7, required = false, value = "小孩數量")
 	private Integer child;
 	public String getName() {

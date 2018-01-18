@@ -29,9 +29,10 @@ public class DepartmentController {
 		return new ResponseEntity<List<Department>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
 	@RequestMapping(value = "/departments", method = RequestMethod.POST)
-	public ResponseEntity<Department> addDepartments(@RequestBody DepartmentVo department) throws Exception{
+	public ResponseEntity<Department> addDepartments(@RequestBody DepartmentVo departmentVo) throws Exception{
 		Department departmentDto = new Department();
-		BeanUtils.copyProperties(department, departmentDto);
+		BeanUtils.copyProperties(departmentVo, departmentDto);
+		 
 		departmentDto= this.departmentDao.save(departmentDto);
 		return new ResponseEntity<Department>(departmentDto, new HttpHeaders(), HttpStatus.OK);
 	}
