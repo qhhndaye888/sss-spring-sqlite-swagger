@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
  import com.sqlite.dao.DepartmentDao;
 import com.sqlite.entities.Department;
 import com.sqlite.models.DepartmentVo;
+
 @CrossOrigin(maxAge = 3600)
 @RestController
 public class DepartmentController {

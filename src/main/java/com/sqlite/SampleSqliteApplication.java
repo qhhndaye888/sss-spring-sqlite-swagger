@@ -9,10 +9,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
-import com.sqlite.dao.CustomerDao;
 import com.sqlite.dao.DepartmentDao;
 import com.sqlite.dao.HabbitDao;
-import com.sqlite.entities.Customer;
 import com.sqlite.entities.Department;
 import com.sqlite.entities.Habbit;
 

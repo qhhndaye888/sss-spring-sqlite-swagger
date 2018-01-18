@@ -19,28 +19,35 @@ public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int id;
+	
 	@Column(nullable = false) 
 	@Size(max = 20)
 	@ApiModelProperty(position = 1, required = true, value = "員工姓名")
 	private String name;
+	
 	@Column(nullable = false) 
 	@Size(max = 10)
 	@ApiModelProperty(position = 2, required = true, value = "身份證字號")
 	private String rocId;
+	
 	@Column(nullable = false) 
 	@ApiModelProperty(position = 3, required = true, value = "員工編號")
 	private String employeeNo;
+	
     @OneToMany
     @JoinColumn(name="habbit_id",referencedColumnName = "id")
     @ApiModelProperty(position = 4, required = false, value = "興趣清單")
 	private List<Habbit> habbits;
+    
 	@OneToOne
 	@JoinColumn(name = "department_id" ,referencedColumnName = "id")
     @ApiModelProperty(position = 5, required = false, value = "部門")
 	private Department department;
+	
 	@Column(nullable = true) 
     @ApiModelProperty(position = 6, required = false, value = "婚姻狀態")
 	private boolean marriage;
+	
 	@Column(nullable = true) 
     @ApiModelProperty(position = 7, required = false, value = "小孩數量")
 	private Integer child;

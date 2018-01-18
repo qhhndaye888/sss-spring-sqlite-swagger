@@ -22,6 +22,7 @@ public class Habbit {
 	@Column(nullable = false)
 	@ApiModelProperty(position = 1, required = true, value = "興趣名稱")
  	private String name ;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@ApiModelProperty(position = 2, required = true, value = "PK,自動產生，新增不用帶值,更新和刪除需帶值")

@@ -12,7 +12,7 @@ import io.swagger.annotations.ApiModelProperty;
 @Entity(name = "department")
 public class Department {
 	@Column(nullable = false) 
-    @ApiModelProperty(position = 1, required = true, value = "部門名稱")
+    @ApiModelProperty(position = 2, required = true, value = "部門名稱")
 	private String name ;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +33,10 @@ public class Department {
 	}
 	public Department(String departmentName) {
 		this.name = departmentName;
+	}
+	public Department(int id , String departmentName) {
+		this.name = departmentName;
+		this.id = id;
 	}
 	public Department() {
 		

@@ -17,6 +17,7 @@ import com.sqlite.entities.Habbit;
 @CrossOrigin(maxAge = 3600)
 @RestController
 public class HabbitController {
+	
 	@Autowired
 	HabbitDao habbitDao;
 	
