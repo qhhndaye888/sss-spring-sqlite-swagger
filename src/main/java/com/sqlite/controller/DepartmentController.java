@@ -18,8 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sqlite.entities.Department;
 import com.sqlite.models.DepartmentVo;
 
+import io.swagger.annotations.Api;
+
 @CrossOrigin(maxAge = 3600)
 @RestController
+@Api(value="部門", description="部門")
 public class DepartmentController {
 	@Autowired
 	DepartmentDao departmentDao;
@@ -38,7 +41,7 @@ public class DepartmentController {
 		return new ResponseEntity<Department>(departmentDto, new HttpHeaders(), HttpStatus.OK);
 	}
 	
-	@RequestMapping(value = "/departments/{id}", method = RequestMethod.POST)
+	@RequestMapping(value = "/departments/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Department> updateDepartment(@PathVariable Integer id, @RequestBody DepartmentVo department) throws Exception{
 		Department departmentDto= this.departmentDao.findOne(id);
 		BeanUtils.copyProperties(department, departmentDto);

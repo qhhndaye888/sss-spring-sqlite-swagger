@@ -22,15 +22,18 @@ import com.sqlite.entities.Employee;
 import com.sqlite.entities.Habbit;
 import com.sqlite.models.EmployeeVo;
 
+import io.swagger.annotations.Api;
+
 @CrossOrigin(maxAge = 3600)
 @RestController
+@Api(value="員工", description="員工資料表")
 public class EmployeeController {
 	@Autowired
 	EmployeeDao employeeDao;
 
 	private Logger logger = Logger.getLogger(this.getClass());
 	@RequestMapping(value = "/employees", method = RequestMethod.GET)
-	public ResponseEntity<List<Employee>> getDepartments() throws Exception {
+	public ResponseEntity<List<Employee>> getEmployees() throws Exception {
 		List<Employee> list = this.employeeDao.findAll();
 		return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
