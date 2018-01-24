@@ -24,6 +24,7 @@ public class Application {
 	private static final Logger log = LoggerFactory.getLogger(Application.class);
 
 	public static void main(String[] args) {
+
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 	}
 

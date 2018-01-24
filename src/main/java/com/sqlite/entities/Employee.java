@@ -2,8 +2,10 @@ package com.sqlite.entities;
 
 import java.util.List;
 
+ 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -11,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Size;
+
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -34,8 +39,9 @@ public class Employee {
 	@ApiModelProperty(position = 3, required = true, value = "員工編號")
 	private String employeeNo;
 	
-    @OneToMany
+    @OneToMany(fetch=FetchType.EAGER,orphanRemoval=true)
     @JoinColumn(name="habbit_id",referencedColumnName = "id")
+    @Cascade({CascadeType.ALL})
     @ApiModelProperty(position = 4, required = false, value = "興趣清單")
 	private List<Habbit> habbits;
     
