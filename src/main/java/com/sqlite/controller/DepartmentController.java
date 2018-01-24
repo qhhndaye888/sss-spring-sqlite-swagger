@@ -19,6 +19,7 @@ import com.sqlite.entities.Department;
 import com.sqlite.models.DepartmentVo;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -26,12 +27,13 @@ import io.swagger.annotations.Api;
 public class DepartmentController {
 	@Autowired
 	DepartmentDao departmentDao;
-
+    @ApiOperation(value = "取得全部部門清單")
 	@RequestMapping(value = "/departments", method = RequestMethod.GET)
 	public ResponseEntity<List<Department>> getDepartments() throws Exception{
 		List<Department> list = this.departmentDao.findAll();
 		return new ResponseEntity<List<Department>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
+    @ApiOperation(value = "新增部門資料")
 	@RequestMapping(value = "/departments", method = RequestMethod.POST)
 	public ResponseEntity<Department> addDepartments(@RequestBody DepartmentVo departmentVo) throws Exception{
 		Department departmentDto = new Department();
@@ -40,7 +42,7 @@ public class DepartmentController {
 		departmentDto= this.departmentDao.save(departmentDto);
 		return new ResponseEntity<Department>(departmentDto, new HttpHeaders(), HttpStatus.OK);
 	}
-	
+    @ApiOperation(value = "更新部門資料")
 	@RequestMapping(value = "/departments/{id}", method = RequestMethod.PUT)
 	public ResponseEntity<Department> updateDepartment(@PathVariable Integer id, @RequestBody DepartmentVo department) throws Exception{
 		Department departmentDto= this.departmentDao.findOne(id);

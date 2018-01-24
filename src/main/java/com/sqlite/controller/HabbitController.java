@@ -15,6 +15,7 @@ import com.sqlite.dao.HabbitDao;
 import com.sqlite.entities.Habbit;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
  
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -23,7 +24,7 @@ public class HabbitController {
 	
 	@Autowired
 	HabbitDao habbitDao;
-	
+    @ApiOperation(value = "取得興趣清單")
 	@RequestMapping(value = "/habbits", method = RequestMethod.GET)
 	public ResponseEntity<List<Habbit>> getHabbits() throws Exception {
 		List<Habbit> list = this.habbitDao.findAll();

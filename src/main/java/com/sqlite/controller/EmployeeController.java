@@ -23,6 +23,7 @@ import com.sqlite.entities.Habbit;
 import com.sqlite.models.EmployeeVo;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 
 @CrossOrigin(maxAge = 3600)
 @RestController
@@ -32,12 +33,13 @@ public class EmployeeController {
 	EmployeeDao employeeDao;
 
 	private Logger logger = Logger.getLogger(this.getClass());
+    @ApiOperation(value = "取得全部員工清單")
 	@RequestMapping(value = "/employees", method = RequestMethod.GET)
 	public ResponseEntity<List<Employee>> getEmployees() throws Exception {
 		List<Employee> list = this.employeeDao.findAll();
 		return new ResponseEntity<List<Employee>>(list, new HttpHeaders(), HttpStatus.OK);
 	}
-	
+    @ApiOperation(value = "新建員工資料")
 	@RequestMapping(value = "/employees", method = RequestMethod.POST)
 	public ResponseEntity<Employee> addEmployees(@RequestBody EmployeeVo employeeVo) throws Exception{
 		Employee employeeDto = new Employee();
@@ -51,16 +53,26 @@ public class EmployeeController {
 		employeeDto= this.employeeDao.save(employeeDto);
 		return new ResponseEntity<Employee>(employeeDto, new HttpHeaders(), HttpStatus.OK);
 	}
-	
+    @ApiOperation(value = "id取得員工資料")
 	@RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
 	public ResponseEntity<Employee> findOneById(@PathVariable Integer id, @RequestBody  EmployeeVo employee) throws Exception{
 		
 		Employee EmployeeDto= this.employeeDao.findOne(id);
 		return new ResponseEntity<Employee>(EmployeeDto, new HttpHeaders(), HttpStatus.OK);
 	}
-	
+    @ApiOperation(value = "id更新員工資料")
+	@RequestMapping(value = "/employees/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Employee> udpateById(@PathVariable Integer id, @RequestBody  EmployeeVo employeeVo) throws Exception{
+		
+		Employee employeeDto= this.employeeDao.findOne(id);
+		BeanUtils.copyProperties(employeeVo, employeeDto);
+		employeeDto.setId(id);
+		employeeDto = this.employeeDao.save(employeeDto);
+		return new ResponseEntity<Employee>(employeeDto, new HttpHeaders(), HttpStatus.OK);
+	}
+    @ApiOperation(value = "id刪除員工資料")
 	@RequestMapping(value = "/employees/{id}", method = RequestMethod.DELETE)
-	public ResponseEntity<Boolean> findOneById(@PathVariable Integer id) throws Exception{
+	public ResponseEntity<Boolean> deleteById(@PathVariable Integer id) throws Exception{
 		boolean isSuccess = Boolean.FALSE;
 		try {
 		 this.employeeDao.delete(id);
