@@ -39,9 +39,9 @@ public class Employee {
 	@ApiModelProperty(position = 3, required = true, value = "員工編號")
 	private String employeeNo;
 	
-    @OneToMany(fetch=FetchType.EAGER,orphanRemoval=true)
+    @OneToMany(fetch=FetchType.EAGER)
     @JoinColumn(name="habbit_id",referencedColumnName = "id")
-    @Cascade({CascadeType.ALL})
+    @Cascade({CascadeType.REFRESH})
     @ApiModelProperty(position = 4, required = false, value = "興趣清單")
 	private List<Habbit> habbits;
     
