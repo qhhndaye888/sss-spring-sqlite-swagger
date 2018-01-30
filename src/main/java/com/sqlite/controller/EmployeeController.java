@@ -62,7 +62,7 @@ public class EmployeeController {
 
 	@ApiOperation(value = "id取得員工資料")
 	@RequestMapping(value = "/employees/{id}", method = RequestMethod.GET)
-	public ResponseEntity<Employee> findOneById(@PathVariable Integer id, @RequestBody EmployeeVo employee)
+	public ResponseEntity<Employee> findOneById(@PathVariable Integer id)
 			throws Exception {
 
 		Employee EmployeeDto = this.employeeDao.findOne(id);
