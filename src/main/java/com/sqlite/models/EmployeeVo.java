@@ -26,6 +26,9 @@ public class EmployeeVo {
 	private List<HabbitVo> habbits;
  
 	private DepartmentVo department;
+	
+	private boolean marriage;
+	private Integer child; 
  
 	public String getName() {
 		return name;
@@ -74,6 +77,22 @@ public class EmployeeVo {
 
 	public void setDepartment(DepartmentVo department) {
 		this.department = department;
+	}
+
+	public boolean isMarriage() {
+		return marriage;
+	}
+
+	public void setMarriage(boolean marriage) {
+		this.marriage = marriage;
+	}
+
+	public Integer getChild() {
+		return child;
+	}
+
+	public void setChild(Integer child) {
+		this.child = child;
 	}
 
  
